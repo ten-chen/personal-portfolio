@@ -23,7 +23,7 @@ export default function Hero({ profile }: HeroProps) {
           </span>
         </h1>
         <h2 className="text-2xl md:text-4xl text-gray-300 mb-8 animate-slide-right">
-          {profile?.title || 'Computer Engineer'}
+          {profile?.title || 'Full-Stack Developer'}
         </h2>
         <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed animate-fade-up">
           {profile?.bio || 'Building innovative solutions with code and creativity'}
