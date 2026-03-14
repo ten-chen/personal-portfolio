@@ -40,8 +40,16 @@ export default function Contact({ profile }: ContactProps) {
   };
 
   const downloadResume = () => {
-    if (profile?.resume_url) window.open(profile.resume_url, '_blank');
-    else alert('Resume URL not configured. Add resume_url to your profile.');
+    if (!profile?.resume_url) {
+    alert('Resume URL not configured. Add resume_url to your profile.');
+    return;
+  }
+
+  const url = profile.resume_url.startsWith("http")
+    ? profile.resume_url
+    : `${import.meta.env.BASE_URL}${profile.resume_url.replace(/^\/+/, "")}`;
+
+  window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
