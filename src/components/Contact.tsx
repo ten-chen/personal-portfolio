@@ -108,7 +108,7 @@ export default function Contact({ profile }: ContactProps) {
               </button>
               {submitted && (
                 <div className="p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-center animate-fade-up">
-                  Message submitted! I'll get back to you soon.
+                  Message submitted! I'll get back to you soon inshallah.
                 </div>
               )}
             </form>
