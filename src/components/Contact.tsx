@@ -10,6 +10,8 @@ export default function Contact({ profile }: ContactProps) {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSocialLinks = async () => {
@@ -25,14 +27,30 @@ export default function Contact({ profile }: ContactProps) {
     fetchSocialLinks();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setErrorMsg(null);
+  setSubmitting(true);
+
+  try {
+    const { error } = await supabase.from('contact_messages').insert({
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    });
+
+    if (error) throw error;
+
     setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: '', email: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
-  };
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => setSubmitted(false), 3000);
+  } catch (err: any) {
+    console.error('Error submitting contact form:', err);
+    setErrorMsg(err?.message ?? 'Failed to send message. Please try again.');
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   const getSocialIcon = (platform: string) => {
     const icons: Record<string, string> = { github: '🐙', linkedin: '💼', twitter: '𝕏', instagram: '📷', email: '✉️' };
@@ -102,10 +120,19 @@ export default function Contact({ profile }: ContactProps) {
                 <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
                 <textarea value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} rows={5} className="w-full px-4 py-2 rounded-lg bg-emerald-950/20 border border-emerald-500/30 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-colors resize-none" placeholder="Your message..." required></textarea>
               </div>
-              <button type="submit" className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-105">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
                 <Mail size={20} />
-                Send Message
+                {submitting ? 'Sending...' : 'Send Message'}
               </button>
+              {errorMsg && (
+                <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/40 text-red-300 text-center">
+                  {errorMsg}
+                </div>
+              )}
               {submitted && (
                 <div className="p-4 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-center animate-fade-up">
                   Message submitted! I'll get back to you soon inshallah.
