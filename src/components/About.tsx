@@ -23,7 +23,7 @@ export default function About({ profile }: AboutProps) {
           </div>
           <div className="space-y-6 animate-slide-right">
             <div>
-              <h3 className="text-2xl font-bold text-sky-400 mb-3">Computer Engineer Student</h3>
+              <h3 className="text-2xl font-bold text-sky-400 mb-3">Computer Engineer Student & Full-Stack Web Developer</h3>
               <p className="text-slate-300 leading-relaxed">
                 Currently pursuing my passion at Asia Pacific University (APU) in Kuala Lumpur, Malaysia. Deeply interested in solving complex problems through code and creating impactful solutions with technology.
               </p>
