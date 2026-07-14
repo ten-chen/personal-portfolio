@@ -25,23 +25,23 @@ export default function About({ profile }: AboutProps) {
             <div>
               <h3 className="text-2xl font-bold text-sky-400 mb-3">Computer Engineer Student</h3>
               <p className="text-slate-300 leading-relaxed">
-                Currently pursuing my passion at Asia Pacific University (APU) in Kuala Lumpur, Malaysia. Deeply interested in solving complex problems through code and creating impactful solutions.
+                Currently pursuing my passion at Asia Pacific University (APU) in Kuala Lumpur, Malaysia. Deeply interested in solving complex problems through code and creating impactful solutions with technology.
               </p>
             </div>
             <div className="space-y-3">
-              <h4 className="text-lg font-semibold text-white">What I Do</h4>
+              <h4 className="text-lg font-semibold text-white">"What I Do?"</h4>
               <ul className="space-y-2 text-slate-400">
                 <li className="flex items-start gap-3">
                   <span className="text-sky-400 font-bold mt-1">•</span>
-                  <span>Develop full-stack web applications and software solutions</span>
+                  <span>Develop full-stack web applications and software solutions.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-sky-400 font-bold mt-1">•</span>
-                  <span>Explore emerging technologies and best practices</span>
+                  <span>Explore emerging technologies and best practices.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-sky-400 font-bold mt-1">•</span>
-                  <span>Build projects that demonstrate creativity and technical excellence</span>
+                  <span>Build projects that demonstrate creativity and technical excellence.</span>
                 </li>
               </ul>
             </div>
