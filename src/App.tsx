@@ -73,14 +73,14 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="animate-pulse-glow rounded-full w-12 h-12 border-2 border-emerald-400"></div>
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="animate-pulse-glow rounded-full w-12 h-12 border-2 border-sky-400"></div>
       </div>
     );
   }
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-slate-950 text-slate-100">
       <Navigation />
       <Hero profile={profile} />
       <About profile={profile} />
